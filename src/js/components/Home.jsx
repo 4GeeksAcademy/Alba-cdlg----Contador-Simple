@@ -1,14 +1,12 @@
-// src/js/components/Home.jsx
-import React from "react";
+import React, { useState } from "react";
 import ReactDom from "react-dom";
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 
-
-function SimpleCounter(porps){
+function SimpleCounter(porps) {
   return (
     <div className="bigCounter">
       <div className="calendar">
-	  <i className="fa-regular fa-clock"></i>
+        <i className="fa-regular fa-clock"></i>
       </div>
       <div className="four">{porps.digiFour % 10}</div>
       <div className="three">{porps.digiThree % 10}</div>
@@ -25,7 +23,10 @@ SimpleCounter.propTypes = {
   digiOne: PropTypes.number,
 };
 
-let counter = 0;
+let counter = 0; // Contador en 0
+
+// Número específico para mostrar la alerta
+const targetTime = 10;  // El número con el que quieres disparar la alerta
 
 function updateCounter() {
   const four = Math.floor(counter / 1000);
@@ -41,8 +42,12 @@ function updateCounter() {
 }
 
 setInterval(function () {
-  counter++; 
-  updateCounter(); // Llamar a la función que actualizará el render
+  counter++;
+  updateCounter(); // Actualizar los valores
+
+  if (counter === targetTime) {
+    alert(`¡Alcanzaste el tiempo de ${targetTime} segundos!`); // Alerta cuando llegue al tiempo específico
+  }
 }, 1000);
 
 // Inicializa el contador con los valores iniciales
